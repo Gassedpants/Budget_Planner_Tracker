@@ -6,5 +6,6 @@ namespace BudgetPlusPlus.Data
 {
     public class BudgetPlusPlusContext(DbContextOptions<BudgetPlusPlusContext> options) : IdentityDbContext<BudgetPlusPlusUser>(options)
     {
+
     }
 }
