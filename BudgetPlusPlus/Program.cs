@@ -1,4 +1,4 @@
-﻿using BudgetPlusPlus.Components;
+﻿    using BudgetPlusPlus.Components;
 using BudgetPlusPlus.Components.Account;
 using BudgetPlusPlus.Data;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("BudgetPlusPlusContext") ?? throw new InvalidOperationException("Connection string 'BudgetPlusPlusContextConnection' not found.");;
 
 builder.Services.AddDbContext<BudgetPlusPlusContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -55,5 +57,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.MapAdditionalIdentityEndpoints();;
+
+app.MapControllers();
 
 app.Run();
