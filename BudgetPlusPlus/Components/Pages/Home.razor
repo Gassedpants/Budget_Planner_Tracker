@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿    @page "/"
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,6 @@
         }
 
         button {
-          width: 100%;
           padding: 14px;
           margin-bottom: 12px;
           font-size: 1rem;
@@ -62,6 +61,12 @@
           border-radius: 12px;
           cursor: pointer;
         }
+        .button-row {
+            display: flex;
+            justify-content: center; /* center horizontally */
+            gap: 20px; /* space between buttons */
+            margin-top: 30px; /* spacing from content above */
+        }
 
         .primary-btn {
           background-color: #22c55e;
@@ -69,9 +74,14 @@
         }
 
         .secondary-btn {
-          background-color: transparent;
+          background-color: #22c55e;
           border: 1px solid #38bdf8;
           color: #38bdf8;
+        }
+        .button-row button,
+        .button-row .secondary-btn {
+          flex: 1;
+          width: 150px; /* fixed width for consistency */
         }
 
         button:hover {
@@ -80,7 +90,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Budget<span>Plus</span>+</h1>
         <p>Simple budgeting. Full control.</p>
@@ -88,11 +97,12 @@
         <div class="welcome-box">
             Track expenses, manage savings, and stay on top of your finances — all in one place.
         </div>
-
-        <button class="primary-btn">Get Started</button>
-        <NavLink href="Account/Login" class="secondary-btn" style="display:block; text-decoration:none;">
-            Log In
-        </NavLink>
+        <div class="button-row">
+            <button class="primary-btn">Get Started</button>
+            <NavLink href="Account/Login" class="secondary-btn">
+                Log In
+            </NavLink>
+        </div>
     </div>
 
 </body>

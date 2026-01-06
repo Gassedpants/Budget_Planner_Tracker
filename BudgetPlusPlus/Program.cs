@@ -30,6 +30,7 @@ builder.Services.AddAuthentication(options =>
     .AddIdentityCookies();
 
 builder.Services.AddIdentityCore<BudgetPlusPlusUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BudgetPlusPlusContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
