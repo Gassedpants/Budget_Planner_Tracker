@@ -1,0 +1,40 @@
+﻿@page "/savings"
+
+@using BudgetPlusPlus.Data
+@using BudgetPlusPlus.Domain
+@inject BudgetPlusPlusContext Db
+@inject AuthenticationStateProvider AuthState
+
+<h3>Savings Goals</h3>
+
+@if (goals.Count == 0)
+{
+    <p>No savings goals yet.</p>
+}
+else
+{
+    @foreach (var goal in goals)
+    {
+        <div>
+            <strong>@goal.GoalName</strong>
+            <p>@goal.CurrentAmount / @goal.TargetAmount</p>
+            <progress value="@goal.CurrentAmount" max="@goal.TargetAmount"></progress>
+        </div>
+    }
+}
+
+@code {
+    List<SavingsGoal> goals = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthState.GetAuthenticationStateAsync();
+        var userId = authState.User
+            .FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)
+            ?.Value;
+
+        goals = Db.SavingsGoals
+            .Where(g => g.UserId == userId)
+            .ToList();
+    }
+}

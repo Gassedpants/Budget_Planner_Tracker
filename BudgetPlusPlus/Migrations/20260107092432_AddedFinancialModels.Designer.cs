@@ -4,6 +4,7 @@ using BudgetPlusPlus.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BudgetPlusPlus.Migrations
 {
     [DbContext(typeof(BudgetPlusPlusContext))]
-    partial class BudgetPlusPlusContextModelSnapshot : ModelSnapshot
+    [Migration("20260107092432_AddedFinancialModels")]
+    partial class AddedFinancialModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

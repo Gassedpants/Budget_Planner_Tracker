@@ -1,0 +1,38 @@
+﻿@page "/MainPage"
+
+@using BudgetPlusPlus.Data
+@using BudgetPlusPlus.Domain
+@inject BudgetPlusPlusContext Db
+@inject AuthenticationStateProvider AuthState
+
+
+
+<h3>Overview</h3>
+<p>Income: $@totalIncome</p>
+<p>Expenses: $@totalExpense</p>
+<p><strong>Balance: $@balance</strong></p>
+
+@code {
+    decimal totalIncome;
+    decimal totalExpense;
+    decimal balance;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthState.GetAuthenticationStateAsync();
+        var userId = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        var Transactions = Db.Transactions.Where(t => t.UserId == userId);
+
+        totalIncome = Transactions
+            .Where(t => t.Type == TransactionsType.Income)
+            .Sum(t => t.Amount);
+
+        totalExpense = Transactions
+            .Where(t => t.Type == TransactionsType.Expense)
+            .Sum(t => t.Amount);
+
+        balance = totalIncome - totalExpense;
+    }
+
+}

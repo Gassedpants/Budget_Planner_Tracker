@@ -1,0 +1,42 @@
+﻿@page "/addTransactions"
+
+@using BudgetPlusPlus.Data
+@using BudgetPlusPlus.Domain
+@inject BudgetPlusPlusContext Db
+@inject NavigationManager Nav
+@inject AuthenticationStateProvider AuthState
+
+<h3>Add Transactions</h3>
+
+<select @bind="type">
+    <option value="Income">Income</option>
+    <option value="Expense">Expense</option>
+</select>
+
+<input @bind="category" placeholder="Category" />
+<input type="number" @bind="amount" />
+<button @onclick="Save">Save</button>
+
+@code {
+    TransactionsType type;
+    string category;
+    decimal amount;
+
+    async Task Save()
+    {
+        var authState = await AuthState.GetAuthenticationStateAsync();
+        var userId = authState.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        Db.Transactions.Add(new Transactions
+        {
+            UserId = userId,
+            Type = type,
+            Category = category,
+            Amount = amount,
+            Date = DateTime.Now
+        });
+
+        await Db.SaveChangesAsync();
+        Nav.NavigateTo("/");
+    }
+}

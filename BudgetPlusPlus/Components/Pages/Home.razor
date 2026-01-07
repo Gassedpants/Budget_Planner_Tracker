@@ -1,4 +1,8 @@
-﻿    @page "/"
+﻿@page "/"
+@using BudgetPlusPlus.Data
+@using BudgetPlusPlus.Domain
+@inject BudgetPlusPlusContext Db
+@inject AuthenticationStateProvider AuthState
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,3 +111,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
+@code {
+
+}
