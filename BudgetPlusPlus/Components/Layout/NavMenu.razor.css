@@ -8,7 +8,6 @@
     width: 100%;
 }
 
-/* Container for centering content */
 .container-fluid {
     width: 100%;
     display: flex;
@@ -16,48 +15,49 @@
     align-items: center;
 }
 
-/* Main navigation menu - THIS IS CRITICAL */
 .nav-menu {
     display: flex;
-    flex-direction: row; /* Explicitly set to horizontal */
+    flex-direction: row;
     gap: 20px;
     align-items: center;
     width: 100%;
-    justify-content: space-between; /* This spreads items across full width */
+    justify-content: flex-start;
+    padding-left: 0; 
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-/* Group for auth-related items */
 .nav-item-group {
     display: flex;
-    flex-direction: row; /* Keep items horizontal */
+    flex-direction: row; 
     gap: 10px;
     align-items: center;
 }
+.nav-item{
+    display: inline-flex;
+    align-items: center;
+}
 
-/* Navigation links */
 .nav-link {
     color: #38bdf8;
     text-decoration: none;
     font-weight: bold;
-    display: inline-block; /* Important for flex alignment */
+    display: inline-block;
     padding: 5px 10px;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
 }
 
-    .nav-link.active {
-        color: #22c55e;
-    }
+.nav-link.active {
+    color: #22c55e;
+}
 
-    .nav-link:hover {
-        color: #22c55e;
-    }
+.nav-link:hover {
+    color: #22c55e;
+}
 
-/* Logout form styling */
 .logout-form {
-    display: inline; /* form sits inline */
+    display: inline;
     margin: 0;
     padding: 0;
 }
@@ -69,9 +69,9 @@
     font-weight: bold;
     cursor: pointer;
     padding: 5px 10px;
-    font-size: inherit; /* Match nav-link font size */
+    font-size: inherit;
 }
 
-    .logout-btn:hover {
-        color: #22c55e;
-    }
+.logout-btn:hover {
+    color: #22c55e;
+}

@@ -2,27 +2,42 @@
 @implements IDisposable
 @inject NavigationManager NavigationManager
 
-<div class="top-row">
-    <div class="container-fluid">
-        <nav class="nav-menu">
-            <NavLink href="" class="nav-link" Match="NavLinkMatch.All">Home</NavLink>
-            <NavLink href="counter" class="nav-link">Counter</NavLink>
-            <NavLink href="weather" class="nav-link">Weather</NavLink>
-
+<div class="nav-item-group">
+    <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
             <AuthorizeView>
                 <Authorized>
-                    <div class="nav-item-group">
-                        <NavLink href="Account/Manage" class="nav-link">@context.User.Identity?.Name</NavLink>
-                        <form action="Account/Logout" method="post" class="logout-form">
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="Account/Manage">
+                            <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
+                        </NavLink>
+                    </div>
+                    <div class="nav-item px-3">
+                        <form action="Account/Logout" method="post">
                             <AntiforgeryToken />
                             <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                            <button type="submit" class="logout-btn">Logout</button>
+                            <button type="submit" class="nav-link">
+                                <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                            </button>
                         </form>
                     </div>
                 </Authorized>
                 <NotAuthorized>
-                    <NavLink href="Account/Register" class="nav-link">Register</NavLink>
-                    <NavLink href="Account/Login" class="nav-link">Login</NavLink>
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="Account/Register">
+                            <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                        </NavLink>
+                    </div>
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="Account/Login">
+                            <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                        </NavLink>
+                    </div>
                 </NotAuthorized>
             </AuthorizeView>
         </nav>
